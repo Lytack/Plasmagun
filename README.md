@@ -3,22 +3,20 @@
 Welcome!  
 This repository contains the full Arduino source code and sound files used in the **Plasmagun** project.
 
-I created a full tutorial on YouTube where I explain how the entire system works.
+I created a tutorial video on YouTube where I build the device and show how certain parts work.
 
 ## 📹 YouTube Tutorial
 
-👉 [Watch the full tutorial here](https://www.youtube.com/)  
+👉 [Watch the tutorial here](https://www.youtube.com/)  
 
 
 ---
 
 ## 📁 What’s inside
 
-- 🔌 **Arduino Code** – Some parts of the code are commented to help you understand how it works
-- 🔊 **DFPlayer Mini Sounds** – All audio files
+- 🔌 **Arduino Code** – Some parts of the code are commented to help you understand how it works  
+- 🔊 **DFPlayer Mini Sounds** – All audio files  
 - 🧠 Simple, clean structure and logic
-
-
 
 ---
 
@@ -26,13 +24,13 @@ I created a full tutorial on YouTube where I explain how the entire system works
 
 This project is licensed under a **custom non-commercial license**:  
 You are free to share, modify, and show this project **online**, but you must always credit the original author:  
-**"Project by LyTack"**
+**"Coded by LyTack"**
 
 Commercial use is not allowed without written permission.  
-Read the full terms in the [`LICENSE`](./LICENSE) file.
+Read the full terms in the [`LICENSE`](./LICENSE.md) file.
 
 ---
 
 ## 🤝 Credits
 
-Created by **LyTack**  
+Created by **LyTack**
