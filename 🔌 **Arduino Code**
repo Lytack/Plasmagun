@@ -1,0 +1,349 @@
+#include <Wire.h>
+#include <TFLI2C.h>
+#include <Adafruit_SSD1306.h>
+#include <Adafruit_GFX.h>
+#include <DFRobotDFPlayerMini.h>
+#include <SoftwareSerial.h>
+#include <elapsedMillis.h>
+#include <Adafruit_BMP280.h>
+#include <AHT20.h>
+
+// Display
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 32
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+// TF Luna Sensor
+TFLI2C tflI2C;
+int16_t tfDist;
+int16_t tfAddr = TFL_DEF_ADR;
+
+// DFPlayer Mini
+SoftwareSerial mySerial(10, 11);  // RX, TX
+DFRobotDFPlayerMini dfplayer;
+
+// Sensoren
+Adafruit_BMP280 bmp;
+AHT20 aht;
+
+// Pins
+#define BUTTON 2
+#define BUTTON_LED 3
+#define RED_LED 4
+#define GREEN_LED 5
+#define WHITE_LED 6
+#define LASER 7
+#define HV_TRIGGER 8
+#define PIN_9 9  // Neuer Pin hinzugefügt
+#define FLOW_SENSOR_PIN 12
+#define AIR_PUMP_PIN 13
+
+bool gasAlertActive = false;
+bool hvActivated = false;
+bool buttonPressed = false;
+bool soundPlaying = false;
+bool sound2Playing = false;
+bool showProgressBar = false;
+bool blinkState = true;
+bool laserToggle = false;  // Zustand des Lasers (ein/aus)
+
+int flowImpulseCounter = 0;
+elapsedMillis soundTimer;
+elapsedMillis blinkTimer;
+
+// Flow sensor debounce state
+bool flowStartupPhase = true;
+int startupImpulses = 0;
+elapsedMillis startupTimer;
+
+void setup() {
+  Serial.begin(115200);
+  mySerial.begin(9600);
+  Wire.begin();
+
+  pinMode(FLOW_SENSOR_PIN, INPUT_PULLUP);
+  pinMode(AIR_PUMP_PIN, OUTPUT);
+
+  pinMode(BUTTON, INPUT_PULLUP);
+  pinMode(BUTTON_LED, OUTPUT);
+  pinMode(RED_LED, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT);
+  pinMode(WHITE_LED, OUTPUT);
+  pinMode(LASER, OUTPUT);
+  pinMode(HV_TRIGGER, OUTPUT);
+  pinMode(PIN_9, OUTPUT);  // Neuer Pin initialisiert
+
+  digitalWrite(BUTTON_LED, HIGH);
+  digitalWrite(RED_LED, HIGH);
+  digitalWrite(GREEN_LED, LOW);
+  digitalWrite(WHITE_LED, LOW);
+  digitalWrite(LASER, LOW);
+  digitalWrite(HV_TRIGGER, LOW);
+  digitalWrite(AIR_PUMP_PIN, LOW);
+  digitalWrite(PIN_9, LOW);  // Pin 9 auf LOW setzen
+
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  display.clearDisplay();
+  display.setTextColor(SSD1306_WHITE);
+  display.setTextSize(1);
+  display.setCursor(0, 0);
+  display.println("System startet...");
+  display.display();
+
+  digitalWrite(RED_LED, LOW);
+  digitalWrite(GREEN_LED, HIGH);
+
+  if (!dfplayer.begin(mySerial)) {
+    Serial.println("DFPlayer nicht gefunden!");
+  }
+
+  if (!bmp.begin(0x77)) {
+    Serial.println("BMP280 Fehler!");
+  }
+
+  aht.begin();
+  // **Sound 3 nach Systemstart für 1 Sekunde abspielen**
+  dfplayer.play(3);  // Spiele Sound 3
+
+  flowImpulseCounter = -1;
+  flowStartupPhase = true;
+}
+
+void loop() {
+  static int lastFlowState = HIGH;
+  int flowState = digitalRead(FLOW_SENSOR_PIN);
+
+  if (lastFlowState == HIGH && flowState == LOW) {
+    flowImpulseCounter++;
+    showProgressBar = true;
+
+    if (flowImpulseCounter >= 3 && !gasAlertActive) {
+      gasAlertActive = true;
+      if (!soundPlaying) {
+        dfplayer.loop(1);
+        soundPlaying = true;
+        soundTimer = 0;
+      }
+    }
+  }
+
+  lastFlowState = flowState;
+
+  float humidity = aht.getHumidity();
+  float temperature = aht.getTemperature();
+  float distance = 0.0;
+  bool hasDistance = tflI2C.getData(tfDist, tfAddr);
+  if (hasDistance) {
+    distance = tfDist / 100.0;
+  }
+
+  if (blinkTimer > 300) {
+    blinkState = !blinkState;
+    blinkTimer = 0;
+  }
+
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setCursor(2, 0);
+  display.print(temperature, 1);
+  display.print("C ");
+  display.setCursor(49, 0);
+  display.print(humidity, 1);
+  display.print("% ");
+
+  bool zuNah = hasDistance && distance < 0.4;
+
+  if (zuNah) {
+    display.setTextSize(2);
+    display.setCursor(11, 10);
+    display.println("TOO CLOSE");
+    if (blinkState) {
+      display.setTextSize(1);
+      display.setCursor(96, 0);
+      display.print(distance, 2);
+      display.println("m");
+    }
+
+    // Hier wird der Laserstatus angezeigt
+    if (laserToggle) {
+      display.setTextSize(1);
+      display.setCursor(0, 25);
+      display.print("Laser ON");
+    }
+
+    if (!soundPlaying && !sound2Playing) {
+      dfplayer.loop(2);
+      sound2Playing = true;
+    }
+  } else {
+    display.setTextSize(1);
+    display.setCursor(96, 0);
+    display.print(distance, 2);
+    display.println("m");
+
+    display.setTextSize(2);
+    display.setCursor(10, 10);
+    if (gasAlertActive) {
+      display.setTextSize(1);
+      display.setCursor(5, 10);
+      display.println("!! Gas registered !!");
+      display.setCursor(0, 20);
+      display.println("High Voltage Released");
+    } else {
+      display.println("STATUS OK");
+
+      // Hier wird der Laserstatus angezeigt
+      if (laserToggle) {
+        display.setTextSize(1);
+        display.setCursor(0, 25);
+        display.print("Laser ON");
+      }
+    }
+
+    if (sound2Playing) {
+      dfplayer.stop();
+      sound2Playing = false;
+    }
+  }
+
+  if (!gasAlertActive && digitalRead(BUTTON) == LOW && !buttonPressed) {
+    buttonPressed = true;
+    laserToggle = !laserToggle;
+    digitalWrite(LASER, laserToggle ? HIGH : LOW);
+  }
+
+  // PIN 9 soll nur nach HV aktiviert werden bzw. erst nach 1,5s!
+  if (gasAlertActive) {
+    digitalWrite(RED_LED, HIGH);
+    digitalWrite(GREEN_LED, LOW);
+    digitalWrite(LASER, HIGH);
+    digitalWrite(BUTTON_LED, LOW);
+    showProgressBar = false;
+  } else {
+    digitalWrite(RED_LED, LOW);
+    digitalWrite(GREEN_LED, HIGH);
+    digitalWrite(BUTTON_LED, HIGH);
+    digitalWrite(PIN_9, LOW);  // Pin 9 ausschalten, außer während HV Sequenz
+  }
+
+  if (showProgressBar && !gasAlertActive && flowImpulseCounter > 0) {
+    int spacing = 4;
+    for (int i = 0; i < 3; i++) {
+      int x = 10 + (i * (34 + spacing));
+      if (flowImpulseCounter > i) {
+        display.fillRect(x, 25, 34, 6, SSD1306_WHITE);
+      } else {
+        display.drawRect(x, 25, 34, 6, SSD1306_WHITE);
+      }
+    }
+  }
+
+  display.display();
+
+  if (gasAlertActive && digitalRead(BUTTON) == LOW && !buttonPressed) {
+    buttonPressed = true;
+    dfplayer.stop();
+
+    unsigned long ladeStart = millis();
+    while (millis() - ladeStart < 1000) {
+      float humidity = aht.getHumidity();
+      float temperature = aht.getTemperature();
+      float distance = tflI2C.getData(tfDist, tfAddr) ? tfDist / 100.0 : 0.0;
+
+      int progress = map(millis() - ladeStart, 0, 1000, 0, 108);
+
+      display.clearDisplay();
+      display.setTextSize(1);
+      display.setCursor(2, 0);
+      display.print(temperature, 1);
+      display.print("C ");
+      display.setCursor(49, 0);
+      display.print(humidity, 1);
+      display.print("% ");
+      display.setCursor(96, 0);
+      display.print(distance, 2);
+      display.println("m");
+
+      display.setCursor(10, 10);
+      display.println("Ladevorgang...");
+      display.drawRect(10, 24, 108, 8, SSD1306_WHITE);
+      display.fillRect(10, 24, progress, 8, SSD1306_WHITE);
+      display.display();
+      delay(20);
+    }
+
+    activateHV();                       // HV aktivieren
+    delay(1500);                        // 1,5s warten!
+    digitalWrite(PIN_9, HIGH);          // Pin 9 NACH 1,5s aktivieren
+
+    delay(400);                        // Pin 9 bleibt 1s an
+    digitalWrite(PIN_9, LOW);           // Danach Pin 9 wieder aus
+
+    delay(1000);
+    digitalWrite(WHITE_LED, HIGH);
+    delay(100);
+    digitalWrite(WHITE_LED, LOW);
+
+    digitalWrite(RED_LED, HIGH);
+    digitalWrite(GREEN_LED, LOW);
+    digitalWrite(BUTTON_LED, LOW);
+    digitalWrite(LASER, LOW);
+    digitalWrite(HV_TRIGGER, LOW);
+
+    digitalWrite(AIR_PUMP_PIN, HIGH);
+
+    dfplayer.play(4); // Spiele Sound 4 ab
+    for (int i = 0; i <= 108; i++) {
+      humidity = aht.getHumidity();
+      temperature = aht.getTemperature();
+      bool hasDistance = tflI2C.getData(tfDist, tfAddr);
+      if (hasDistance) distance = tfDist / 100.0;
+
+      display.clearDisplay();
+      display.setTextSize(1);
+      display.setCursor(2, 0);
+      display.print(temperature, 1);
+      display.print("C ");
+      display.setCursor(49, 0);
+      display.print(humidity, 1);
+      display.print("% ");
+      display.setCursor(96, 0);
+      display.print(distance, 2);
+      display.println("m");
+
+      display.setCursor(10, 10);
+      display.setTextSize(1);
+      display.println("Cooldown...");
+      display.drawRect(10, 22, 108, 8, SSD1306_WHITE);
+      display.fillRect(10, 22, i, 8, SSD1306_WHITE);
+      display.display();
+      delay(100); // Cooldown dauert 11 Sekunden (108 Schritte * 100ms pro Schritt)
+    }
+
+    digitalWrite(AIR_PUMP_PIN, LOW);
+    digitalWrite(RED_LED, LOW);    
+    digitalWrite(GREEN_LED, HIGH); 
+
+    gasAlertActive = false;
+    buttonPressed = false;
+    soundPlaying = false;
+    sound2Playing = false;
+    flowImpulseCounter = 0;
+    showProgressBar = false;
+    flowStartupPhase = true;
+    startupImpulses = 0;
+  }
+
+  // Reset des Knopfstatus
+  if (digitalRead(BUTTON) == HIGH) {
+    buttonPressed = false;
+  }
+
+  delay(50);
+}
+
+void activateHV() {
+  digitalWrite(HV_TRIGGER, HIGH);
+  delay(500);
+  digitalWrite(HV_TRIGGER, LOW);
+}
