@@ -1,4 +1,4 @@
-# Plasmagun Project
+# Powerful Plasmagun Project
 
 Welcome!  
 This repository contains the full Arduino source code and sound files used in the **Plasmagun** project.
