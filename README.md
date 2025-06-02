@@ -82,7 +82,7 @@ You are free to share, modify, and show this project **online**, but you must al
 **"Coded by LyTack"**
 
 Commercial use is not allowed without written permission.  
-Read the full terms in the [`LICENSE`](./LICENSE.md) file.
+Read the full terms in the [`LICENSE`](./LICENSE) file.
 
 ---
 
