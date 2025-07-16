@@ -23,7 +23,7 @@ Some **electronics parts are briefly explained**, but the main focus is on **the
 
 ## 📂 What’s Inside
 
-* **🔌 Arduino Code** – Clean, structured code with helpful comments
+* ** ![arduino-1-logo-svg-vector](https://github.com/user-attachments/assets/a6388056-f1b9-4105-8b9c-21897b302373) Arduino Code** – Clean, structured code with helpful comments
 * **🔊 DFPlayer Mini Sounds** – All required audio files
 * **🧠 Simple Logic** – Easy to understand and modify
 
