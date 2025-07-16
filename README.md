@@ -9,7 +9,7 @@ I created a tutorial video on YouTube where I build the device and show how cert
 
 ## 📹 YouTube Tutorial
 
-👉 [Watch the tutorial here](https://www.youtube.com/)  
+👉 [Watch the tutorial here](https://www.youtube.com/@LyTack)  
 
 ---
 
