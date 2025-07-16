@@ -15,7 +15,8 @@ Some **electronics parts are briefly explained**, but the main focus is on **the
 
 ---
 
-## 🎥 YouTube Tutorial
+## <img width="340" height="343" alt="Youtube_logo" src="https://github.com/user-attachments/assets/b3975ed4-adde-4141-aac9-945f6a37d26c" />
+  YouTube Tutorial
 
 👉 [Watch the tutorial on YouTube](https://www.youtube.com/@LyTack)
 
