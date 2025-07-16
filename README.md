@@ -1,5 +1,7 @@
 # 🔥 Powerful Plasmagun Project
+
 ---
+
 **Welcome!**
 
 This repository contains the **Arduino source code** and **sound files** for the **Plasmagun Project**.
