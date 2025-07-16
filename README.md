@@ -100,6 +100,7 @@ Full terms are available in the [`LICENSE`](./LICENSE) file.
 
 ## 🙌 Credits 
 
-Project by <img width="157" height="77" alt="generated_text (1)" src="https://github.com/user-attachments/assets/c49e3322-144a-4eef-b531-0e861862885a" />
+<img width="284" height="81" alt="generated_text (2)" src="https://github.com/user-attachments/assets/f804636c-968b-4bde-b851-56ebf6d4abb6" />
+
 
 
