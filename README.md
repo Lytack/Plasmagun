@@ -4,7 +4,7 @@
 
 ---
 
-# <img width="49" height="81" alt="image-from-rawpixel-id-12680235-png" src="https://github.com/user-attachments/assets/4b77ffa7-d118-446c-8353-e162c585ac63" /> Welcome!
+# <img width="800" height="533" alt="image-from-rawpixel-id-3888923-png" src="https://github.com/user-attachments/assets/49529644-6060-44d3-9ab7-21a697c836de" /> Welcome!
 
 This repository contains the **Arduino source code** and **sound files** for the **Plasmagun Project**.
 
