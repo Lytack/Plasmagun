@@ -1,6 +1,4 @@
 # 🔥 Powerful Plasmagun Project
-
-
 ---
 **Welcome!**
 
