@@ -21,7 +21,7 @@ Some **electronics parts are briefly explained**, but the main focus is on **the
 
 ## 📂 What’s Inside
 
-*  <img width="17" height="17" alt="arduino-1-logo-png-transparent" src="https://github.com/user-attachments/assets/4795ee23-0323-4f13-8065-d5c10e393d4f" /> ****Arduino Code** – Clean, structured code with helpful comments
+* **<img width="17" height="17" alt="arduino-1-logo-png-transparent" src="https://github.com/user-attachments/assets/4795ee23-0323-4f13-8065-d5c10e393d4f" /> Arduino Code** – Clean, structured code with helpful comments
 * **🔊 DFPlayer Mini Sounds** – All required audio files
 * **🧠 Simple Logic** – Easy to understand and modify
 
