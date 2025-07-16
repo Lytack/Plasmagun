@@ -4,7 +4,7 @@
 
 ---
 
-# ![images](https://github.com/user-attachments/assets/2a32f523-8b6e-4605-839e-1577fb9ff8eb) Welcome!
+# <img width="360" height="360" alt="png-transparent-flame-light-effects-fire-elemental-flame-daoguang-thumbnail" src="https://github.com/user-attachments/assets/edbd9915-5a68-4ba2-a58d-37e476e9ac3e" /> Welcome!
 
 This repository contains the **Arduino source code** and **sound files** for the **Plasmagun Project**.
 
