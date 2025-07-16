@@ -4,7 +4,7 @@
 
 ---
 
-# <img width="360" height="360" alt="pngtree-burning-fire-png-image_2447015" src="https://github.com/user-attachments/assets/5abd049c-55c4-4879-9cbd-2da4dcdef09f" /> Welcome!
+# <img width="360" height="360" alt="pngtree-realistic-realistic-flame-flame-burning-visual-effects-decorative-pattern-png-image_9186516" src="https://github.com/user-attachments/assets/f6d2e9a4-cb3d-48f2-8382-47d58db853e9" /> Welcome!
 
 This repository contains the **Arduino source code** and **sound files** for the **Plasmagun Project**.
 
