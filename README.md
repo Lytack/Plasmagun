@@ -1,8 +1,9 @@
 # 🔥 Powerful Plasmagun Project
 
----
 
+---
 **Welcome!**
+
 This repository contains the **Arduino source code** and **sound files** for the **Plasmagun Project**.
 
 I've also made a **YouTube tutorial**, where I show you **how to build the device step by step**.
