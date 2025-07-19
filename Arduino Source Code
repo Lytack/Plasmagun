@@ -195,7 +195,7 @@ void loop() {
   display.print(humidity, 1);
   display.print("% ");
 
-  bool tooClose = hasDistance && distance < 0.3; // Distance under 40cm -> Warning
+  bool tooClose = hasDistance && distance < 0.3; // Distance under 30cm -> Warning
 
   if (tooClose) {
     // Display for too close distance + sound + laser info
@@ -211,6 +211,7 @@ void loop() {
     }
 
     if (laserToggle) {
+      display.setTextSize(1);
       display.setCursor(0, 25);
       display.print("Laser ON");
     }
