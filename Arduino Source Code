@@ -41,6 +41,8 @@ AHT20 aht;                          // AHT20 sensor for temperature and humidity
 
 // Control variables for system status
 bool gasAlertActive = false;        // Whether gas has been detected (alarm state)
+bool gasDetected = false;            // NEW: Gas detection flag for interrupt check
+
 bool hvActivated = false;           // Whether high voltage has been activated (not directly used)
 bool buttonPressed = false;         // Whether the button was pressed during gas alarm
 bool soundPlaying = false;          // Whether sound 1 is playing (loop)
@@ -50,6 +52,7 @@ bool blinkState = true;             // Blinking for display output
 bool laserToggle = false;           // Toggle laser on/off
 
 // Flow sensor control
+volatile int impulses = 0;           // NEW: Impulses counted in interrupt
 int flowImpulseCounter = 0;         // Counter for water impulses (flow sensor)
 elapsedMillis soundTimer;           // Time since last sound start
 elapsedMillis blinkTimer;           // Timer for blinking
@@ -69,6 +72,20 @@ const unsigned long longPressTime = 500; // Threshold for long press (500ms)
 bool flowStartupPhase = true;       // Startup phase of the flow sensor
 int startupImpulses = 0;            // Count impulses in the startup phase
 elapsedMillis startupTimer;         // Timer for startup
+
+// --- Flow Sensor Ignore After HV Ignition ---
+unsigned long ignitionTime = 0;            // Timestamp of ignition
+bool ignoreFlowSensor = false;             // Whether flow sensor should be ignored
+const unsigned long ignoreDuration = 2000; // Ignore duration in milliseconds (2 seconds)
+
+//-------------------------------------------------------
+// Interrupt Service Routine (ISR) for flow sensor pulses
+//-------------------------------------------------------
+void flowSensorInterrupt() {
+  if (!gasDetected) {       // **Count impulses only if no gas detected**
+    impulses++;
+  }
+}
 
 //-------------------------------------------------------
 // setup() runs once at startup
@@ -132,6 +149,9 @@ void setup() {
 
   flowImpulseCounter = -1;          // Start value for flow sensor
   flowStartupPhase = true;          // Activate startup phase
+
+  // Attach interrupt for flow sensor pin
+  attachInterrupt(digitalPinToInterrupt(FLOW_SENSOR_PIN), flowSensorInterrupt, FALLING);
 }
 
 //-------------------------------------------------------
@@ -145,21 +165,26 @@ void loop() {
 
   unsigned long currentTime = millis();
 
-  if (lastFlowState == HIGH && flowState == LOW) {
-    // New impulse detected (falling edge)
-    if (currentTime - lastFlowTime > flowCooldown) {
-      // Only accept if more than 500ms since last impulse
-      flowImpulseCounter++;
-      showProgressBar = true;
-      lastFlowTime = currentTime;
+  // Increase flowImpulseCounter from volatile impulses safely
+  noInterrupts();
+  int impulsesCopy = impulses;
+  interrupts();
 
-      if (flowImpulseCounter >= 3 && !gasAlertActive) {
-        // Trigger gas alarm after 3 impulses
-        gasAlertActive = true;
-        if (!soundPlaying) {
-          dfplayer.loop(1);         // Play sound 1 in loop
-          soundPlaying = true;
-          soundTimer = 0;
+  if (!ignoreFlowSensor || millis() - ignitionTime > ignoreDuration) {
+    if (lastFlowState == HIGH && flowState == LOW) {
+      if (currentTime - lastFlowTime > flowCooldown) {
+        flowImpulseCounter++;
+        showProgressBar = true;
+        lastFlowTime = currentTime;
+
+        if (flowImpulseCounter >= 3 && !gasAlertActive) {
+          gasAlertActive = true;
+          gasDetected = true;         // <-- Set gas detected flag here
+          if (!soundPlaying) {
+            dfplayer.loop(1);         // Play sound 1 in loop
+            soundPlaying = true;
+            soundTimer = 0;
+          }
         }
       }
     }
@@ -349,6 +374,8 @@ void loop() {
     digitalWrite(PIN_9, HIGH); // Solenoid valve on
     delay(500);
     activateHV();  // Trigger high voltage
+    ignitionTime = millis();      // Record ignition time
+    ignoreFlowSensor = true;      // Start ignoring flow sensor
 
     // Flashlight
     digitalWrite(WHITE_LED, HIGH);
@@ -399,13 +426,19 @@ void loop() {
 
     // Reset system to initial state
     gasAlertActive = false;
+    gasDetected = false;          // <-- Reset gas detected flag here!
     buttonPressed = false;
     soundPlaying = false;
     sound2Playing = false;
     flowImpulseCounter = 0;
+    impulses = 0;                 // <-- Reset interrupt impulse count as well
     showProgressBar = false;
     flowStartupPhase = true;
     startupImpulses = 0;
+  }
+
+  if (ignoreFlowSensor && millis() - ignitionTime > ignoreDuration) {
+    ignoreFlowSensor = false;  // Reactivate flow sensor after 2 seconds
   }
 
   delay(50); // Small pause in main loop
