@@ -1,6 +1,7 @@
 
 
-## (っ◔◡◔)っ PLASMAGUN PROJECT 
+<span style="font-size:60px"><b>(っ◔◡◔)っ PLASMAGUN PROJECT</b></span>
+
 
 
 
