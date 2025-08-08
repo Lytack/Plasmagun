@@ -90,7 +90,7 @@ Please install the following libraries in the Arduino IDE before uploading the c
 * Make sure the `mp3` folder is correctly placed on the microSD card.
 * Insert the card into the **DFPlayer Mini** before running the system.
 
-* ---
+ ---
 
 ## 📊 Technical Parameters
 
