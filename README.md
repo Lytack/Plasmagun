@@ -163,6 +163,6 @@ Full terms are available in the [`LICENSE`](./LICENSE) file.
 ## 🙌 Credits 
 
 
-<img width="360" height="97" alt="generated_text (4)" src="https://github.com/user-attachments/assets/2fb42d78-e5de-419a-932a-e24c4d67e8ce" />
+ # ＬＹＴＡＣＫ
 
 
