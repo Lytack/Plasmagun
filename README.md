@@ -11,10 +11,9 @@
 
 
 
- This repository contains the **Arduino source code** and **sound files** for the **Plasmagun Project**.
-
- I've also made a **YouTube tutorial**, where I show you **how to build the device step by step**.
- Some **electronics parts are briefly explained**, but the main focus is on **the building process**.
+ ##### This repository contains the **Arduino source code** and **sound files** for the **Plasmagun Project**.
+ 
+##### I've also made a **YouTube tutorial**, where I show you **how to build the device step by step**. Some **electronics parts are briefly explained**, but the main focus is on **the building process**.
 
 ---
 
