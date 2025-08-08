@@ -379,11 +379,11 @@ void loop() {
 
     // Flashlight
     digitalWrite(WHITE_LED, HIGH);
-    delay(100);
+    delay(50);
     digitalWrite(WHITE_LED, LOW);
     delay(400);
     digitalWrite(PIN_9, LOW); // Solenoid valve off
-    delay(500);
+    delay(1200);
 
     // Switch LEDs to shutdown status
     digitalWrite(RED_LED, HIGH);
