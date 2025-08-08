@@ -86,6 +86,62 @@ Please install the following libraries in the Arduino IDE before uploading the c
 * Make sure the `mp3` folder is correctly placed on the microSD card.
 * Insert the card into the **DFPlayer Mini** before running the system.
 
+* ---
+
+## 📊 Technical Parameters
+
+###  Plasma Cannon – Combustion Chamber
+
+| Parameter | Value / Range | Unit |
+|-----------|---------------|------|
+| Gas mixture | H₂ + O₂ (usually 2:1, sometimes 1:1) + <9% C₃H₈ + <2% C₂H₂ | – |
+| Ambient pressure | ~14.5 (1) | PSI (bar) |
+| Operating pressure in chamber (pre-ignition) | Ambient pressure | – |
+| Short pressure spike | 290 – 435 (17 – 21) | PSI (bar) |
+| Pressure drop after explosion | <5 ms to ~14.5 (1) | PSI (bar) |
+| Pressure pulse duration | 1 – 5 | ms |
+| Max. temperature (ignition point) | 3200 – 3600 (1760 – 1980) | °F (°C) |
+| Duration >2730 °F (1500 °C) | ~1 – 2 | ms |
+| Total duration >930 °F (500 °C) | ~10 – 20 | ms |
+| PVC melting point (inner chamber) | 167 – 221 (75 – 105) | °F (°C) |
+| PVC softening point (inner chamber) | ~176 – 194 (80 – 90) | °F (°C) |
+| Time to deformation (chamber) | >100 | ms |
+| Thermal conductivity (inner wall) | ~0.104 (0.18) | BTU/(h·ft·°F) (W/(m·K)) |
+| Gas volume expansion | 4 – 8× initial volume | – |
+| Flashback risk | High | – |
+| Max. cycles without maintenance | 146 | Ignitions |
+| Heat exposure <2 ms at >3630 °F (2000 °C) | No deformation | – |
+| Heat exposure >110 ms at >176 °F (80 °C) | Deformation | – |
+
+---
+
+###  Plasma Cannon – Hose 16×12 mm
+
+| Parameter | Value / Range | Unit |
+|-----------|---------------|------|
+| Pressure | 87 – 130 (6 – 9) | PSI (bar) |
+| Pressure pulse duration | 8.2 – 8.7 | ms |
+| Temperature in hose center | ~752 – 1112 (400 – 600) | °F (°C) |
+| Temperature at hose exit | ~212 – 302 (100 – 150) | °F (°C) |
+| Duration >932 °F (500 °C) inside hose | <5 | ms |
+| Gas volume expansion in hose | 8 – 9× initial volume | – |
+| Gas flow velocity inside hose | ~112 – 268 (50 – 120) | ft/s (m/s) |
+
+---
+
+###  Plasma Cannon – Exit / Muzzle
+
+| Parameter | Value / Range | Unit |
+|-----------|---------------|------|
+| End pressure at exit | 13 – 49.3 (0.9 – 3.4) | PSI (bar) |
+| Pressure pulse duration | ~2 – 5 | ms |
+| Temperature at exit | ~176 – 392 (80 – 200) | °F (°C) |
+| Gas volume expansion | 8 – 10× initial volume | – |
+| Flow velocity at exit | ~393 – 787 (120 – 240) | ft/s (m/s) |
+| Sound level near muzzle (1 m distance) | 114 – 138 | dB |
+| Recoil effect | Slight, directed backward | – |
+| Thermal load (interior wall) | Short-term <3 ms | – |
+
 ---
 
 ## 📄 License
