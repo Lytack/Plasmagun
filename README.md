@@ -1,11 +1,5 @@
 
-<!-- Light Mode -->
-<img src="https://github.com/user-attachments/assets/DEIN-SCHWARZES-LOGO-LINK" 
-     width="733" height="67" alt="PlasmaGun Logo Light" #gh-light-mode-only />
 
-<!-- Dark Mode -->
-<img src="https://github.com/user-attachments/assets/7799132c-36ab-4fd0-879d-8875d9ac60b5" 
-     width="733" height="67" alt="PlasmaGun Logo Dark" #gh-dark-mode-only />
 
 
 ---
