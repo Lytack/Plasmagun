@@ -1,6 +1,6 @@
 
 
-<img width="1203" height="170" alt="generated_text (3)" src="https://github.com/user-attachments/assets/3b3f03db-04f4-4a20-aa1f-bedfdab0b584" />
+<img width="1203" height="170" alt=" generated_text (4)" logo-dark.png src="https://github.com/user-attachments/assets/f97d0da0-43d2-4142-9015-1057f022394b" />
 
 
 
