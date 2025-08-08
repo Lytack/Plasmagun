@@ -1,6 +1,6 @@
 
 
-<h1 style="font-size:60px">(っ◔◡◔)っ  PLASMAGUN PROJECT </h1>
+<h1 style="font-size:90px">(っ◔◡◔)っ  PLASMAGUN PROJECT </h1>
 
 
 
