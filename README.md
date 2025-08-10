@@ -94,6 +94,8 @@ Please install the following libraries in the Arduino IDE before uploading the c
 
 ## 📊 Technical Parameters
 
+**Total weight:** 5.18 lb (2.348 kg / 2348.4 g)
+
 ###  Plasma Cannon – Combustion Chamber
 
 | Parameter | Value / Range | Unit |
