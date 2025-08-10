@@ -1,5 +1,5 @@
 
- <h1 style="font-size1000px">(っ◔◡◔)っ <img width="45" height="45" alt="image-from-rawpixel-id-6430893-png" src="https://github.com/user-attachments/assets/68af7046-94d3-46a5-a16d-fc9388d49aa5" />      PLASMAGUN PROJECT </h1>
+ <h1 style="font-size1000px">(っ◔◡◔)っ<img width="45" height="45" alt="image-from-rawpixel-id-6430893-png" src="https://github.com/user-attachments/assets/68af7046-94d3-46a5-a16d-fc9388d49aa5" />      PLASMAGUN PROJECT </h1>
 
 
 
