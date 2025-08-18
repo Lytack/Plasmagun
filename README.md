@@ -96,7 +96,6 @@ Please install the following libraries in the Arduino IDE before uploading the c
 
 **Total weight:**  
 5.177 lb (pounds)  
-82.83 oz (ounces)  
 2.348 kg (kilograms)  
 2348.4 g (grams)  
 
