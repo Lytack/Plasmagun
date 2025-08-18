@@ -3,9 +3,9 @@
 
 
 
+<img width="400" alt="1000024347" src="https://github.com/user-attachments/assets/f616b8b0-240d-4377-be3e-59f729c8ad28" />
 
 
-<img width="780" height="145" alt="1000024347" src="https://github.com/user-attachments/assets/4a5e6ca2-f8a2-4546-8f66-d138a799325f" />
 
 
 
