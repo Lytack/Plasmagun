@@ -147,7 +147,7 @@ Please install the following libraries in the Arduino IDE before uploading the c
 | Temperature at exit | ~176 – 392 (80 – 200) | °F (°C) |
 | Gas volume expansion | 8 – 10× initial volume | – |
 | Flow velocity at exit | ~393 – 787 (120 – 240) | ft/s (m/s) |
-| Sound level near muzzle (1 m distance) | 114 – 138 | dB |
+| Sound level near muzzle (1m distance) | 114 – 138 | dB |
 | Recoil effect | Slight, directed backward | – |
 | Thermal load (interior wall) | Short-term <3 ms | – |
 
