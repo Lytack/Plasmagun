@@ -98,7 +98,7 @@ Please install the following libraries in the Arduino IDE before uploading the c
 
 Below you can see the OLED display with the labeled values:
 
-<img width="3997" height="3001" alt="1000024348" src="https://github.com/user-attachments/assets/c652e7e1-88e7-44a1-b77f-e458fdefe945" />)
+<img src="https://github.com/user-attachments/assets/c652e7e1-88e7-44a1-b77f-e458fdefe945" alt="1000024348" width="300">
 
 1. **Temperature (°C / °F)**  
    Displays the chamber temperature in degrees Celsius. Fahrenheit can also be used.
