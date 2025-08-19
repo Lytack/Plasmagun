@@ -186,7 +186,7 @@ Below you can see the OLED display with the labeled values:
 
 ---
 
-## 📄 License
+## 📜 License
 
 This project is licensed under a **custom non-commercial license**:
 
