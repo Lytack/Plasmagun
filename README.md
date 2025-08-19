@@ -106,12 +106,12 @@ Below you can see the OLED display with the labeled values:
 2. **Humidity (%)**  
    Shows the humidity level inside the chamber.  
    - The lower the value, the louder the ignition sound.  
-   - If humidity is above ~80%, ignition may fail.
+   - If humidity is above ~80%, ignition may fail.  
+   - During cooldown, humidity may rise up to 100% and then gradually decrease.
 
 3. **Distance (m)**  
    Displays the measured distance in meters.  
    - Maximum range: ~8 meters.
-
 
  ---
 
