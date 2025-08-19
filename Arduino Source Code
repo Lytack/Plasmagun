@@ -1,7 +1,5 @@
-
-arduino
-
 // Include libraries
+
 #include <Wire.h>                   // For I2C communication (e.g., display, sensors)
 #include <TFLI2C.h>                 // For TF Luna Lidar sensor (distance measurement via I2C)
 #include <Adafruit_SSD1306.h>       // For OLED display (SSD1306 driver)
