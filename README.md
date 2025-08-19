@@ -108,7 +108,9 @@ Below you can see the OLED display with the labeled values:
    display.setCursor(2, 0);
    display.print(temperatureF, 1);
    display.print("F ");
-  
+
+   ```
+
 **2. Humidity (%)**
    I have observed the following behavior inside the chamber:
 
