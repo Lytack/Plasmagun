@@ -101,7 +101,7 @@ Below you can see the OLED display with the labeled values:
 <img src="https://github.com/user-attachments/assets/c652e7e1-88e7-44a1-b77f-e458fdefe945" alt="1000024348" width="450">
 
 **1. Temperature (°C / °F)**  
-   Displays the chamber temperature. By default in Celsius, but you can convert to Fahrenheit with the formula:
+   Displays the chamber temperature. By default in Celsius, but you can convert to Fahrenheit with the code:
 
    ```cpp
    float temperatureF = temperature * 9.0 / 5.0 + 32;
