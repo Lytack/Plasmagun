@@ -94,7 +94,7 @@ Please install the following libraries in the Arduino IDE before uploading the c
 
  ---
 
-## 📊 Sensor Display Information
+## 📄 Sensor Display Information
 
 Below you can see the OLED display with the labeled values:
 
@@ -103,11 +103,13 @@ Below you can see the OLED display with the labeled values:
 1. **Temperature (°C / °F)**  
    Displays the chamber temperature in degrees Celsius. Fahrenheit can also be used.
 
-2. **Humidity (%)**  
-   Shows the humidity level inside the chamber.  
-   - The lower the value, the louder the ignition sound.  
-   - If humidity is above ~80%, ignition may fail.  
-   - During cooldown, humidity may rise up to 100% and then gradually decrease.
+2. **Humidity (%)**
+   I have observed the following behavior inside the chamber:
+
+   * The lower the humidity value, the louder the ignition sound.
+   * Ignition will not occur if humidity exceeds \~80% RH.
+   * After ignition, humidity spikes to 100% and then quickly drops again during the cooldown phase.
+
 
 3. **Distance (m)**  
    Displays the measured distance in meters.  
