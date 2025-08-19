@@ -1,5 +1,5 @@
 
-```cpp
+arduino
 
 // Include libraries
 #include <Wire.h>                   // For I2C communication (e.g., display, sensors)
