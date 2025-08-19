@@ -1,4 +1,4 @@
-
+ 
  <h1 style="font-size1000px" >(っ◔◡◔)っ <img width="45" height="45" alt="image-from-rawpixel-id-6430893-png" src="https://github.com/user-attachments/assets/68af7046-94d3-46a5-a16d-fc9388d49aa5" />      PLASMAGUN PROJECT    </h1>
 
 
@@ -98,7 +98,7 @@ Please install the following libraries in the Arduino IDE before uploading the c
 
 Below you can see the OLED display with the labeled values:
 
-<img src="https://github.com/user-attachments/assets/c652e7e1-88e7-44a1-b77f-e458fdefe945" alt="1000024348" width="400">
+<img src="https://github.com/user-attachments/assets/c652e7e1-88e7-44a1-b77f-e458fdefe945" alt="1000024348" width="450">
 
 1. **Temperature (°C / °F)**  
    Displays the chamber temperature in degrees Celsius. Fahrenheit can also be used.
