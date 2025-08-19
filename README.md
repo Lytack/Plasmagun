@@ -100,10 +100,10 @@ Below you can see the OLED display with the labeled values:
 
 <img src="https://github.com/user-attachments/assets/c652e7e1-88e7-44a1-b77f-e458fdefe945" alt="1000024348" width="450">
 
-1. **Temperature (°C / °F)**  
+**1. Temperature (°C / °F)**  
    Displays the chamber temperature in degrees Celsius. Fahrenheit can also be used.
 
-2. **Humidity (%)**
+**2. Humidity (%)**
    I have observed the following behavior inside the chamber:
 
    * The lower the humidity value, the louder the ignition sound.
@@ -111,7 +111,7 @@ Below you can see the OLED display with the labeled values:
    * After ignition, humidity spikes to 100% and then quickly drops again during the cooldown phase.
 
 
-3. **Distance (m)**  
+**3. Distance (m)**  
    Displays the measured distance in meters.  
    - Maximum range: ~8 meters.
 
