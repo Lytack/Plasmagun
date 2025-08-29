@@ -23,6 +23,8 @@
 
 👉 [**Watch the tutorial on YouTube**](https://www.youtube.com/@LyTack)
 
+(Coming soon)
+
 ---
 
 ## 📂 What’s Inside
