@@ -23,7 +23,6 @@
 
 👉 [**Watch the tutorial on YouTube**](https://youtu.be/ps6f6uj6I0s)
 
-(Coming soon)
 
 ---
 
