@@ -21,7 +21,7 @@
 
 ## <img width="35" height="38" alt="Youtube_logo" src="https://github.com/user-attachments/assets/b3975ed4-adde-4141-aac9-945f6a37d26c" /> YouTube Tutorial
 
-👉 [**Watch the tutorial on YouTube**](https://youtu.be/ps6f6uj6I0s)
+👉 [**Watch the tutorial on YouTube**](https://youtu.be/_RVXmGKZSYw?si=rm8f-F707xQFuByR)
 
 
 ---
